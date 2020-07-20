@@ -19,5 +19,8 @@
   "bugs": {
     "url": "https://github.com/jzauderer/face-rec/issues"
   },
-  "homepage": "https://github.com/jzauderer/face-rec#readme"
+  "homepage": "https://github.com/jzauderer/face-rec#readme",
+  "dependencies": {
+    "face-api.js": "^0.22.2"
+  }
 }
