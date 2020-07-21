@@ -21,6 +21,8 @@
   },
   "homepage": "https://github.com/jzauderer/face-rec#readme",
   "dependencies": {
-    "face-api.js": "^0.22.2"
+    "canvas": "^2.6.1",
+    "face-api.js": "^0.22.2",
+    "node-static": "^0.7.11"
   }
 }
