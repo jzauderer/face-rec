@@ -24,6 +24,7 @@ video.addEventListener('play', ()=>{
     document.body.append(canvas)
     const displaySize = {width: video.width, height: video.height}
     faceapi.matchDimensions(canvas, displaySize)
+
     const VTCanvas = document.getElementById("VTCanvas")
     const ctx = VTCanvas.getContext("2d")
     VTCanvas.width = video.width
@@ -41,8 +42,22 @@ video.addEventListener('play', ()=>{
         faceapi.draw.drawFaceExpressions(canvas, resizedDetections)
 
         //Draw character model
-        ctx.drawImage(eyes, 0, 0)
-    }, 100)
+        const landmarks = await faceapi.detectFaceLandmarks(video)
+        const resizedLandmarks = faceapi.resizeResults(landmarks, displaySize)
+        ctx.clearRect(0, 0, VTCanvas.width, VTCanvas.height)
+        let rightEye = resizedLandmarks.getRightEye()
+        let leftEye = resizedLandmarks.getLeftEye()
+        ctx.drawImage(eyes, leftEye[0].x, leftEye[0].y,
+            rightEye[2].x - leftEye[0].x, (leftEye[4].y - leftEye[2].y) * 2)
+
+        // ctx.moveTo(leftEye[0].x, leftEye[0].y)
+        // ctx.lineTo(rightEye[2].x, rightEye[2].y)
+        // ctx.stroke()
+
+
+        console.log(resizedLandmarks.getLeftEye())
+        console.log(resizedLandmarks.getRightEye())
+    }, 10)
 })
 /*
 const VTCanvas = document.createElement("canvas")
