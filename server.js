@@ -1,8 +1,13 @@
-const http = require("http");
-const nStatic = require('node-static');
-const faceapi = require('face-api.js')
-let fileServer = new nStatic.Server('./public');
+const express = require('express');
+const app = express();
+const port = 5858;
 
-http.createServer(function(request, response) {
-    fileServer.serve(request, response);
-}).listen(5858);
+app.use(express.static('public'))
+
+app.get('/', (req, res)=>{
+    res.send('Hello World!')
+})
+
+app.listen(port, ()=>{
+    console.log(`Example app listening at http://localhost:${port}`)
+})
