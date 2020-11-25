@@ -7,7 +7,15 @@ body{
     justify-content: center;
     align-items: center;
 }
+video{
+    height: 100vh;
+}
 
 canvas{
-    position: absolute;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
 }
